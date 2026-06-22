@@ -1,0 +1,16 @@
+<section class="feature-page">
+  <app-page-header
+    eyebrow="PROJECT REGISTRY"
+    title="Connected Codebases"
+    description="Register software projects, repository metadata, stack information, and authorized agent access."
+    actionLabel="New Project"
+    actionIcon="add"
+    (actionClick)="onCreateProject()"
+  />
+
+  <div class="project-grid">
+    @for (project of projects(); track project.id) {
+      <app-project-card [project]="project" />
+    }
+  </div>
+</section>

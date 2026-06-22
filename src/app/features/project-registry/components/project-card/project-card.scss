@@ -1,0 +1,166 @@
+.project-card {
+  position: relative;
+  min-height: 23rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: 1.35rem;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  box-shadow: 0 1.25rem 3rem rgba(0, 0, 0, 0.12);
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at top right,
+    color-mix(in srgb, var(--color-accent) 12%, transparent),
+    transparent 16rem
+  );
+}
+
+.project-card__top,
+.project-card__meta,
+.project-card__integrations,
+.project-card__stack,
+.project-card__stats,
+.project-card__actions {
+  position: relative;
+  z-index: 1;
+}
+
+.project-card__top {
+  display: flex;
+  gap: 0.95rem;
+  align-items: flex-start;
+}
+
+.project-card__key {
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 1.1rem;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  color: white;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--color-accent), #7c3aed);
+  box-shadow: 0 0.9rem 1.75rem rgba(0, 0, 0, 0.18);
+}
+
+.project-card__identity {
+  min-width: 0;
+  flex: 1;
+}
+
+.project-card__identity h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: -0.03em;
+}
+
+.project-card__identity p {
+  margin: 0.45rem 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.project-card__meta {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1.15rem;
+}
+
+.project-card__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.82rem;
+}
+
+.project-card__meta-item mat-icon {
+  flex: 0 0 auto;
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-accent);
+}
+
+.project-card__meta-item span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-card__integrations,
+.project-card__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
+.integration-chip,
+.stack-chip {
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.integration-chip {
+  color: var(--color-warning);
+  background: color-mix(in srgb, var(--color-warning) 13%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-warning) 22%, transparent);
+}
+
+.stack-chip {
+  color: var(--color-text-primary);
+  background: color-mix(in srgb, var(--color-accent) 0%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+
+.project-card__stats {
+  display: grid;
+  grid-template-columns: 0.8fr 0.8fr 1.4fr;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.project-card__stats > div {
+  padding: 0.8rem;
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--color-bg-elevated) 72%, transparent);
+  border: 2px solid var(--color-border);
+}
+
+.stat-value {
+  display: block;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.stat-label {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.project-card__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  margin-top: 1rem;
+  color: var(--color-text-secondary);
+}

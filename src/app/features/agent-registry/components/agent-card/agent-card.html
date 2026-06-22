@@ -1,0 +1,55 @@
+<article class="agent-card">
+  <div class="agent-card__top">
+    <div class="agent-card__avatar" [style.background]="agent().accentColor">
+      {{ agent().avatar }}
+    </div>
+
+    <div class="agent-card__identity">
+      <div class="agent-card__title-row">
+        <h2>{{ agent().name }}</h2>
+        <span class="status-badge" [class]="'status-badge--' + agent().status">
+          {{ agent().status }}
+        </span>
+      </div>
+
+      <p>{{ agent().role }}</p>
+    </div>
+  </div>
+
+  <div class="agent-card__model">
+    <mat-icon>memory</mat-icon>
+    <span>{{ agent().model }}</span>
+  </div>
+
+  <p class="agent-card__description">
+    {{ agent().description }}
+  </p>
+
+  <div class="agent-card__capabilities">
+    @for (capability of agent().capabilities; track capability) {
+      <span class="capability-chip">{{ capability }}</span>
+    }
+  </div>
+
+  <div class="agent-card__metrics">
+    <div>
+      <span class="metric-value">{{ agent().runCount }}</span>
+      <span class="metric-label">Runs</span>
+    </div>
+
+    <div>
+      <span class="metric-value">{{ agent().successRate }}%</span>
+      <span class="metric-label">Success</span>
+    </div>
+  </div>
+
+  <div class="agent-card__actions">
+    <button type="button" mat-icon-button aria-label="Edit agent">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <button type="button" mat-icon-button aria-label="Delete agent">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</article>

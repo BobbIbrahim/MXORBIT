@@ -1,0 +1,68 @@
+<p>project-card works!</p>
+<article class="project-card">
+  <div class="project-card__top">
+    <div class="project-card__key">
+      {{ project().key }}
+    </div>
+
+    <div class="project-card__identity">
+      <h2>{{ project().name }}</h2>
+      <p>{{ project().description }}</p>
+    </div>
+  </div>
+
+  <div class="project-card__meta">
+    <div class="project-card__meta-item">
+      <mat-icon>account_tree</mat-icon>
+      <span>{{ project().defaultBranch }}</span>
+    </div>
+
+    <div class="project-card__meta-item">
+      <mat-icon>link</mat-icon>
+      <span>{{ project().repositoryUrl }}</span>
+    </div>
+  </div>
+
+  <div class="project-card__integrations">
+    @if (project().jiraProjectKey) {
+      <span class="integration-chip">JIRA {{ project().jiraProjectKey }}</span>
+    }
+
+    @if (project().pegaAppId) {
+      <span class="integration-chip">PEGA {{ project().pegaAppId }}</span>
+    }
+  </div>
+
+  <div class="project-card__stack">
+    @for (technology of project().stack; track technology) {
+      <span class="stack-chip">{{ technology }}</span>
+    }
+  </div>
+
+  <div class="project-card__stats">
+    <div>
+      <span class="stat-value">{{ project().authorizedAgentIds.length }}</span>
+      <span class="stat-label">Agents</span>
+    </div>
+
+    <div>
+      <span class="stat-value">{{ project().healthScore }}%</span>
+      <span class="stat-label">Health</span>
+    </div>
+
+    <div>
+      <span class="stat-value">{{ project().lastActivity }}</span>
+      <span class="stat-label">Activity</span>
+    </div>
+  </div>
+
+  <div class="project-card__actions">
+    <button type="button" mat-icon-button aria-label="Edit project">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <button type="button" mat-icon-button aria-label="Delete project">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</article>

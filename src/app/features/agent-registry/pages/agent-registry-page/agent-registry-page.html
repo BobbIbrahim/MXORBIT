@@ -1,0 +1,16 @@
+<section class="feature-page">
+  <app-page-header
+    eyebrow="AGENT REGISTRY"
+    title="Specialists on the Mesh"
+    description="Manage reusable AI specialists, capabilities, model assignments, and operational metadata."
+    actionLabel="New Agent"
+    actionIcon="add"
+    (actionClick)="onCreateAgent()"
+  />
+
+  <div class="agent-grid">
+    @for (agent of agents(); track agent.id) {
+      <app-agent-card [agent]="agent" />
+    }
+  </div>
+</section>

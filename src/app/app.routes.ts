@@ -1,3 +1,45 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+import { Shell } from './core/layout/shell/shell';
+import { AgentRegistryPage } from './features/agent-registry/pages/agent-registry-page/agent-registry-page';
+import { AutopilotPage } from './features/autopilot/pages/autopilot-page/autopilot-page';
+import { ProjectRegistryPage } from './features/project-registry/pages/project-registry-page/project-registry-page';
+import { SquadsPage } from './features/squads/pages/squads-page/squads-page';
+
+export const routes: Routes = [
+  {
+    path: '',
+    component: Shell,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'agents',
+      },
+      {
+        path: 'agents',
+        component: AgentRegistryPage,
+        title: 'Agent Registry',
+      },
+      {
+        path: 'projects',
+        component: ProjectRegistryPage,
+        title: 'Project Registry',
+      },
+      {
+        path: 'squads',
+        component: SquadsPage,
+        title: 'Squads',
+      },
+      {
+        path: 'autopilot',
+        component: AutopilotPage,
+        title: 'Autopilot',
+      },
+    ],
+  },
+  {
+    path: '**',
+    redirectTo: 'agents',
+  },
+];
