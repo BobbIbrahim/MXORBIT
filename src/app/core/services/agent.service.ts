@@ -1,4 +1,5 @@
 import { Injectable, signal } from '@angular/core';
+
 import { Agent } from '../models/agent.model';
 
 @Injectable({
@@ -52,4 +53,9 @@ export class AgentService {
   getAgents() {
     return this.agents;
   }
+
+  getAgentById(agentId: string) {
+    return this.agents().find((agent) => agent.id === agentId);
+  }
+  
 }

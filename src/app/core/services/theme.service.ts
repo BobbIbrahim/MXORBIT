@@ -17,7 +17,7 @@ export class ThemeService {
   readonly isDarkTheme = computed(() => this.currentTheme() === 'dark');
 
   readonly toggleLabel = computed(() =>
-    this.isDarkTheme() ? 'White schema' : 'Dark schema',
+    this.isDarkTheme() ? 'Light mode' : 'Dark mode',
   );
 
   readonly toggleIcon = computed(() =>
