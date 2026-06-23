@@ -1,11 +1,12 @@
 import { Component, input } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+
 import { Agent } from '../../../../core/models/agent.model';
 
 @Component({
   selector: 'app-agent-card',
-  imports: [MatButtonModule, MatIconModule],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './agent-card.html',
   styleUrl: './agent-card.scss',
 })

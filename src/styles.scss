@@ -1,42 +1,9 @@
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
-html {
-  height: 100%;
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      typography: Roboto,
-      density: 0,
-    )
-  );
-}
-
-body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
-
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  margin: 0;
-  height: 100%;
-}
-/* You can add global styles to this file, and also import other style files */
+/* =================================================:/* =========================================================
+   Define global CSS variables used by all components.
+   Components should use var(--color-...) instead of hardcoded colors.
+   ========================================================= */
 
 :root,
 :root[data-theme='dark'] {
@@ -83,14 +50,223 @@ body {
   --gradient-purple: rgba(124, 58, 237, 0.08);
 }
 
+
+/* =========================================================
+   Global document reset
+   Purpose:
+   Provide consistent base layout and theme colors.
+   ========================================================= */
+
 html,
 body {
   min-height: 100%;
   margin: 0;
   background: var(--color-bg);
   color: var(--color-text-primary);
+  font-family: Roboto, Arial, sans-serif;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
 }
 
 * {
   box-sizing: border-box;
+}
+
+
+/* =========================================================
+   Global typography rendering
+   Purpose:
+   Make bold text crisp and prevent blurry/ghosted rendering.
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+button {
+  text-shadow: none;
+  filter: none;
+}
+
+
+/* =========================================================
+   Angular Material overlay container
+   Purpose:
+   Ensure overlays inherit theme variables and readable text.
+   Examples:
+   - mat-select dropdown
+   - future dialogs
+   - menus
+   ========================================================= */
+
+.cdk-overlay-container {
+  color: var(--color-text-primary);
+}
+
+
+/* =========================================================
+   Angular Material Select Dropdown Styling
+
+   Used by:
+   <mat-select panelClass="registry-sort-panel">
+
+   Purpose:
+   Angular Material select panels render inside the global
+   CDK overlay container, outside the component DOM.
+   Therefore this styling must live in src/styles.scss.
+   ========================================================= */
+
+.registry-sort-panel {
+  padding: 0.35rem !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 0.95rem !important;
+  background: var(--color-surface) !important;
+  color: var(--color-text-primary) !important;
+  box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.32) !important;
+  overflow: hidden !important;
+}
+
+/* Material MDC select panel internal container */
+.registry-sort-panel.mat-mdc-select-panel {
+  background: var(--color-surface) !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* Each dropdown option */
+.registry-sort-panel .mat-mdc-option {
+  min-height: 2.75rem !important;
+  border-radius: 0.75rem !important;
+  color: var(--color-text-primary) !important;
+  background: transparent !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* Option text */
+.registry-sort-panel .mat-mdc-option .mdc-list-item__primary-text {
+  color: var(--color-text-primary) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Hovered option */
+.registry-sort-panel .mat-mdc-option:hover {
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent) !important;
+}
+
+/* Focused option */
+.registry-sort-panel .mat-mdc-option.mdc-list-item--focused {
+  background: color-mix(in srgb, var(--color-accent) 14%, transparent) !important;
+}
+
+/* Selected option */
+.registry-sort-panel .mat-mdc-option.mdc-list-item--selected {
+  background: color-mix(in srgb, var(--color-accent) 18%, transparent) !important;
+  color: var(--color-text-primary) !important;
+}
+
+/* Selected option text */
+.registry-sort-panel .mat-mdc-option.mdc-list-item--selected .mdc-list-item__primary-text {
+  color: var(--color-text-primary) !important;
+}
+
+/* Selected checkmark */
+.registry-sort-panel .mat-pseudo-checkbox,
+.registry-sort-panel .mat-mdc-option .mat-pseudo-checkbox-minimal {
+  color: var(--color-accent) !important;
+}
+
+/* Ripple overlay */
+.registry-sort-panel .mat-mdc-option .mat-ripple-element {
+  background-color: color-mix(in srgb, var(--color-accent) 20%, transparent) !important;
+}
+
+
+/* =========================================================
+   Light theme adjustment for dropdown
+   Purpose:
+   Use a softer shadow in white schema.
+   ========================================================= */
+
+:root[data-theme='light'] .registry-sort-panel {
+  box-shadow: 0 1.5rem 3rem rgba(15, 23, 42, 0.16) !important;
+}
+/* =========================================================
+   Angular Material base theme
+   Purpose:
+   Provide Angular Material components with a valid base theme.
+   Our app-specific colors are controlled mainly through CSS variables.
+   ========================================================= */
+
+html {
+  @include mat.theme((
+    color: (
+      theme-type: dark,
+      primary: mat.$cyan-palette,
+      tertiary: mat.$violet-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+/* =========================================================
+   Light mode registry sort dropdown panel
+   Used by:
+   <mat-select panelClass="registry-sort-panel">
+
+   Purpose:
+   Make the opened Sort by dropdown match white schema.
+   ========================================================= */
+
+:root[data-theme='light'] .registry-sort-panel {
+  border-color: rgba(15, 23, 42, 0.14) !important;
+  background: #ffffff !important;
+  color: #172033 !important;
+  box-shadow: 0 1.5rem 3rem rgba(15, 23, 42, 0.16) !important;
+}
+
+:root[data-theme='light'] .registry-sort-panel.mat-mdc-select-panel {
+  background: #ffffff !important;
+  color: #172033 !important;
+}
+
+:root[data-theme='light'] .registry-sort-panel .mat-mdc-option {
+  color: #172033 !important;
+  background: transparent !important;
+  font-weight: 500 !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+:root[data-theme='light'] .registry-sort-panel .mat-mdc-option .mdc-list-item__primary-text {
+  color: #172033 !important;
+  font-weight: 500 !important;
+}
+
+:root[data-theme='light'] .registry-sort-panel .mat-mdc-option:hover {
+  background: rgba(8, 145, 178, 0.08) !important;
+}
+
+:root[data-theme='light'] .registry-sort-panel .mat-mdc-option.mdc-list-item--focused {
+  background: rgba(8, 145, 178, 0.1) !important;
+}
+
+:root[data-theme='light'] .registry-sort-panel .mat-mdc-option.mdc-list-item--selected {
+  background: rgba(8, 145, 178, 0.14) !important;
+}
+
+:root[data-theme='light'] .registry-sort-panel .mat-mdc-option.mdc-list-item--selected .mdc-list-item__primary-text {
+  color: #172033 !important;
 }

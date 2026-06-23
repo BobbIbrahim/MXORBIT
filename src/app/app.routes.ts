@@ -5,6 +5,7 @@ import { AgentRegistryPage } from './features/agent-registry/pages/agent-registr
 import { AutopilotPage } from './features/autopilot/pages/autopilot-page/autopilot-page';
 import { ProjectRegistryPage } from './features/project-registry/pages/project-registry-page/project-registry-page';
 import { SquadsPage } from './features/squads/pages/squads-page/squads-page';
+import { AgentDetailsPage } from './features/agent-registry/pages/agent-details-page/agent-details-page';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,12 @@ export const routes: Routes = [
         path: 'autopilot',
         component: AutopilotPage,
         title: 'Autopilot',
+      },
+
+      {
+        path: 'agents/:agentId',
+        component: AgentDetailsPage,
+      title: 'Agent Details',
       },
     ],
   },
