@@ -1,14 +1,18 @@
+export type ProjectStatus = 'active' | 'paused' | 'completed';
+
 export interface Project {
   id: string;
-  key: string;
   name: string;
   description: string;
+
+  status: ProjectStatus;
+
   repositoryUrl: string;
   defaultBranch: string;
-  jiraProjectKey?: string;
-  pegaAppId?: string;
   stack: string[];
-  authorizedAgentIds: string[];
-  healthScore: number;
-  lastActivity: string;
+
+  agentIds: string[];
+
+  createdAt: string;
+  updatedAt: string;
 }

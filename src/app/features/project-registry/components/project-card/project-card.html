@@ -1,68 +1,73 @@
-<p>project-card works!</p>
 <article class="project-card">
   <div class="project-card__top">
-    <div class="project-card__key">
-      {{ project().key }}
+    <div class="project-card__icon">
+      <mat-icon>folder_open</mat-icon>
     </div>
 
     <div class="project-card__identity">
-      <h2>{{ project().name }}</h2>
+      <div class="project-card__title-row">
+        <h2>
+          <a [routerLink]="['/projects', project().id]" class="project-card__name-link">
+            {{ project().name }}
+          </a>
+        </h2>
+
+        <span class="status-badge" [class]="'status-badge--' + project().status">
+          {{ project().status }}
+        </span>
+      </div>
+
       <p>{{ project().description }}</p>
     </div>
   </div>
 
-  <div class="project-card__meta">
-    <div class="project-card__meta-item">
-      <mat-icon>account_tree</mat-icon>
-      <span>{{ project().defaultBranch }}</span>
-    </div>
-
-    <div class="project-card__meta-item">
+  <section class="project-card__codebase" aria-label="Project codebase metadata">
+    <div class="codebase-row">
       <mat-icon>link</mat-icon>
-      <span>{{ project().repositoryUrl }}</span>
+
+      <div>
+        <span class="codebase-label">Repository</span>
+        <a
+          class="repository-link"
+          [href]="project().repositoryUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ project().repositoryUrl }}
+        </a>
+      </div>
     </div>
-  </div>
 
-  <div class="project-card__integrations">
-    @if (project().jiraProjectKey) {
-      <span class="integration-chip">JIRA {{ project().jiraProjectKey }}</span>
-    }
+    <div class="codebase-row">
+      <mat-icon>account_tree</mat-icon>
 
-    @if (project().pegaAppId) {
-      <span class="integration-chip">PEGA {{ project().pegaAppId }}</span>
-    }
-  </div>
+      <div>
+        <span class="codebase-label">Default Branch</span>
+        <strong>{{ project().defaultBranch }}</strong>
+      </div>
+    </div>
+  </section>
 
-  <div class="project-card__stack">
+  <section class="project-card__stack" aria-label="Project technology stack">
     @for (technology of project().stack; track technology) {
       <span class="stack-chip">{{ technology }}</span>
     }
-  </div>
+  </section>
 
-  <div class="project-card__stats">
+  <section class="project-card__metadata" aria-label="Project metadata">
     <div>
-      <span class="stat-value">{{ project().authorizedAgentIds.length }}</span>
-      <span class="stat-label">Agents</span>
+      <span class="metadata-label">Assigned Agents</span>
+      <strong>{{ project().agentIds.length }}</strong>
     </div>
 
     <div>
-      <span class="stat-value">{{ project().healthScore }}%</span>
-      <span class="stat-label">Health</span>
+      <span class="metadata-label">Updated</span>
+      <strong>{{ project().updatedAt }}</strong>
     </div>
+  </section>
 
-    <div>
-      <span class="stat-value">{{ project().lastActivity }}</span>
-      <span class="stat-label">Activity</span>
-    </div>
-  </div>
-
-  <div class="project-card__actions">
-    <button type="button" mat-icon-button aria-label="Edit project">
-      <mat-icon>edit</mat-icon>
-    </button>
-
-    <button type="button" mat-icon-button aria-label="Delete project">
-      <mat-icon>delete</mat-icon>
-    </button>
-  </div>
+  <a [routerLink]="['/projects', project().id]" class="project-card__details-link">
+    <span>View details</span>
+    <mat-icon>arrow_forward</mat-icon>
+  </a>
 </article>

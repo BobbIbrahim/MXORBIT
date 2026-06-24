@@ -1,12 +1,12 @@
 import { Component, input } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 
 import { Project } from '../../../../core/models/project.model';
 
 @Component({
   selector: 'app-project-card',
-  imports: [MatButtonModule, MatIconModule],
+  imports: [RouterLink, MatIconModule],
   templateUrl: './project-card.html',
   styleUrl: './project-card.scss',
 })

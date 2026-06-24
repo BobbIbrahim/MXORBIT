@@ -1,7 +1,7 @@
 <section class="agent-details-page">
-  <a routerLink="/agents" mat-stroked-button class="back-link">
+  <a [routerLink]="returnUrl" mat-stroked-button class="back-link">
     <mat-icon>arrow_back</mat-icon>
-    Back to Agent Registry
+    {{ backLabel }}
   </a>
 
   @if (agent(); as selectedAgent) {
@@ -27,14 +27,12 @@
           </div>
         </header>
 
-
         <section class="metadata-strip" aria-label="Agent metadata">
-        <div class="metadata-strip__item">
+          <div class="metadata-strip__item">
             <span class="metadata-strip__label">Agent ID</span>
             <strong class="metadata-strip__value">{{ selectedAgent.id }}</strong>
-        </div>
+          </div>
         </section>
-
 
         <section class="details-section">
           <h2>Description</h2>

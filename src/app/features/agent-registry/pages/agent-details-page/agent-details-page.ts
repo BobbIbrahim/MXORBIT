@@ -17,6 +17,13 @@ export class AgentDetailsPage {
 
   private readonly agentId = this.route.snapshot.paramMap.get('agentId');
 
+  readonly returnUrl =
+    this.route.snapshot.queryParamMap.get('returnUrl') ?? '/agents';
+
+  readonly backLabel = this.returnUrl.startsWith('/projects/')
+    ? 'Back to Project Details'
+    : 'Back to Agent Registry';
+
   readonly agent = computed(() => {
     if (!this.agentId) {
       return undefined;

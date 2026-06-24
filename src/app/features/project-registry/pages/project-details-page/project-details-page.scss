@@ -2,7 +2,7 @@
    1. Page wrapper
    ========================================================= */
 
-.agent-details-page {
+.project-details-page {
   min-height: calc(100vh - 4rem);
 }
 
@@ -101,7 +101,7 @@
   gap: 1rem;
 }
 
-.details-card__avatar {
+.details-card__icon {
   width: 4rem;
   height: 4rem;
   flex: 0 0 auto;
@@ -109,10 +109,14 @@
   place-items: center;
   border-radius: 1.25rem;
   color: white;
-  font-size: 1.1rem;
-  font-weight: 800;
-  letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--color-accent), #7c3aed);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.18);
+}
+
+.details-card__icon mat-icon {
+  font-size: 1.7rem;
+  width: 1.7rem;
+  height: 1.7rem;
 }
 
 .details-card__identity {
@@ -214,20 +218,47 @@
   letter-spacing: 0.1em;
 }
 
-.description {
-  max-width: 55rem;
-  margin: 0;
-  color: var(--color-text-secondary);
-  line-height: 1.7;
+.repository-link {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  gap: 0.45rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-bg-elevated) 72%, transparent);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  overflow: hidden;
 }
 
-.capability-list {
+.repository-link mat-icon {
+  flex: 0 0 auto;
+  color: var(--color-accent);
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.repository-link span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.repository-link:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.stack-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
 }
 
-.capability-chip {
+.stack-chip {
   padding: 0.38rem 0.65rem;
   border-radius: 999px;
   background: color-mix(in srgb, var(--color-accent) 11%, transparent);
@@ -239,9 +270,86 @@
   filter: none;
 }
 
+.muted-text {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
 
 /* =========================================================
-   8. Right side summary panel
+   8. Assigned agents
+   ========================================================= */
+
+.assigned-agent-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.assigned-agent {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--color-bg-elevated) 72%, transparent);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease,
+    background-color 160ms ease;
+}
+
+.assigned-agent:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--color-accent) 34%, var(--color-border));
+  background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+}
+
+.assigned-agent__avatar {
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 0.8rem;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.assigned-agent__content {
+  min-width: 0;
+  display: grid;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.assigned-agent__content strong {
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.assigned-agent__content small {
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.assigned-agent mat-icon {
+  color: var(--color-accent);
+  font-size: 1rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+
+/* =========================================================
+   9. Right side summary panel
    ========================================================= */
 
 .details-card__side-panel {
@@ -269,9 +377,16 @@
   letter-spacing: 0.1em;
 }
 
+.side-panel-value {
+  color: var(--color-text-primary);
+  font-size: 1.35rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
 
 /* =========================================================
-   9. Status badge
+   10. Status badge
    ========================================================= */
 
 .status-badge {
@@ -284,27 +399,27 @@
   letter-spacing: 0.08em;
 }
 
-.status-badge--online {
+.status-badge--active {
   color: var(--color-success);
   background: color-mix(in srgb, var(--color-success) 14%, transparent);
 }
 
-.status-badge--idle {
+.status-badge--paused {
   color: var(--color-warning);
   background: color-mix(in srgb, var(--color-warning) 14%, transparent);
 }
 
-.status-badge--offline {
-  color: var(--color-text-muted);
-  background: color-mix(in srgb, var(--color-text-muted) 14%, transparent);
+.status-badge--completed {
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 14%, transparent);
 }
 
 
 /* =========================================================
-   10. Runtime model
+   11. Branch pill
    ========================================================= */
 
-.model-pill {
+.branch-pill {
   display: inline-flex;
   align-items: center;
   width: fit-content;
@@ -316,7 +431,7 @@
   background: color-mix(in srgb, var(--color-surface) 70%, transparent);
 }
 
-.model-pill mat-icon {
+.branch-pill mat-icon {
   font-size: 1rem;
   width: 1rem;
   height: 1rem;
@@ -325,46 +440,42 @@
 
 
 /* =========================================================
-   11. Metrics
+   12. Dates
    ========================================================= */
 
-.metrics-grid {
+.date-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
   margin-top: auto;
 }
 
-.metric-card {
+.date-card {
   padding: 1rem;
   border: 1px solid var(--color-border);
   border-radius: 1rem;
   background: color-mix(in srgb, var(--color-surface) 78%, transparent);
 }
 
-.metric-value {
+.date-label {
   display: block;
-  font-size: 1.5rem;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -0.025em;
-  color: var(--color-text-primary);
-  text-shadow: none;
-  filter: none;
-}
-
-.metric-label {
-  display: block;
-  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
   font-size: 0.72rem;
   color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
+.date-card strong {
+  display: block;
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
 
 /* =========================================================
-   12. Not found state
+   13. Not found state
    ========================================================= */
 
 .not-found {
@@ -402,7 +513,7 @@
 
 
 /* =========================================================
-   13. Responsive layout
+   14. Responsive layout
    ========================================================= */
 
 @media (max-width: 980px) {
@@ -410,7 +521,7 @@
     grid-template-columns: 1fr;
   }
 
-  .metrics-grid {
+  .date-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     margin-top: 0;
   }
@@ -425,7 +536,7 @@
     flex-direction: column;
   }
 
-  .metrics-grid {
+  .date-grid {
     grid-template-columns: 1fr;
   }
 }
